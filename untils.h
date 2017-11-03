@@ -10,5 +10,6 @@
  * @return  点的数量
  */
 int drawLine(QPoint start, QPoint end, QPoint* &result);
-
+int drawCircle(QPoint center, int radius, QPoint* &result);
+int drawOval(QPoint center, int longRadius, int shortRadius, QPoint* &result);
 #endif // UNTILS_H

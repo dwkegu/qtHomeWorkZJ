@@ -21,11 +21,22 @@ public:
     ~t1View();
 
 public slots:
+    void onSelectChanged(int position);
+
     void onTextChange1(QString arg);
     void onTextChange2(QString arg);
     void onTextChange3(QString arg);
     void onTextChange4(QString arg);
     void onBtnClick();
+
+    void onCirclTextChanged1(QString arg);
+    void onCirclTextChanged2(QString arg);
+    void onCirclTextChanged3(QString arg);
+
+    void onOvalTextChange1(QString arg);
+    void onOvalTextChange2(QString arg);
+    void onOvalTextChange3(QString arg);
+    void onOvalTextChange4(QString arg);
 
 private:
     int selectedFunc;
@@ -57,6 +68,8 @@ private:
     QLineEdit *circleCenterXEdit;
     QLineEdit *circleCenterYEdit;
     QLineEdit *circleRadiusEdit;
+    QPoint circleCenterPoint;
+    int circleRadius;
     //画椭圆
     QLabel *ovalCenterLabel;
     QLabel *ovalLongerRadiusLabel;
@@ -65,6 +78,9 @@ private:
     QLineEdit *ovalCenterYEdit;
     QLineEdit *ovalLongerRadiusEdit;
     QLineEdit *ovalShorterRadiusEdit;
+    QPoint ovalCenter;
+    int ovalLongRadius;
+    int ovalShortRadius;
 
     //right graph view
     QGraphicsView * graphView;

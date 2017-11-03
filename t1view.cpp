@@ -62,6 +62,7 @@ void t1View::createFunc1(QBoxLayout *parent, int insertPosition){
     //设置当前选择的内容
     funcSelector->setCurrentIndex(selectedFunc);
     delete list;
+    connect(funcSelector,SIGNAL(currentIndexChanged(int)),this,SLOT(ON))
     itemLayout1->addWidget(funcSelector);
     //整个view的容器1
     startXLabel = new QLabel(tr("起点x坐标:"));
@@ -113,12 +114,15 @@ void t1View::createFunc2(QBoxLayout *parent, int insertPosition){
     circleCenterXEdit = new QLineEdit();
     circleCenterXEdit->setMinimumWidth(40);
     circleCenterXEdit->setStyleSheet("background:white");
+    connect(circleCenterXEdit,SIGNAL(textChanged(QString)),this,SLOT(onCirclTextChanged1(QString)));
     circleCenterYEdit = new QLineEdit();
     circleCenterYEdit->setMinimumWidth(40);
     circleCenterYEdit->setStyleSheet("background:white");
+    connect(circleCenterYEdit,SIGNAL(textChanged(QString)),this,SLOT(onCirclTextChanged2(QString)));
     circleRadiusEdit = new QLineEdit();
     circleRadiusEdit->setMinimumWidth(40);
     circleRadiusEdit->setStyleSheet("background:white");
+    connect(circleRadiusEdit,SIGNAL(textChanged(QString)),this,SLOT(onCirclTextChanged3(QString)));
     QVBoxLayout *itemLayout = new QVBoxLayout();
     QHBoxLayout *row1 = new QHBoxLayout();
     row1->addWidget(circleCenterLabel);
@@ -139,15 +143,19 @@ void t1View::createFunc3(QBoxLayout *parent, int insertPosition){
     ovalCenterXEdit = new QLineEdit();
     ovalCenterXEdit->setMinimumWidth(40);
     ovalCenterXEdit->setStyleSheet("background:white");
+    connect(ovalCenterXEdit,SIGNAL(textChanged(QString)),this,SLOT(onOvalTextChange1(QString)));
     ovalCenterYEdit = new QLineEdit();
     ovalCenterYEdit->setMinimumWidth(40);
     ovalCenterYEdit->setStyleSheet("background:white");
+    connect(ovalCenterYEdit,SIGNAL(textChanged(QString)),this,SLOT(onOvalTextChange2(QString)));
     ovalLongerRadiusEdit = new QLineEdit();
     ovalLongerRadiusEdit->setMinimumWidth(40);
     ovalLongerRadiusEdit->setStyleSheet("background:white");
+    connect(ovalLongerRadiusEdit,SIGNAL(textChanged(QString)),this,SLOT(onOvalTextChange3(QString)));
     ovalShorterRadiusEdit = new QLineEdit();
     ovalShorterRadiusEdit->setMinimumWidth(40);
     ovalShorterRadiusEdit->setStyleSheet("background:white");
+    connect(ovalShorterRadiusEdit,SIGNAL(textChanged(QString)),this,SLOT(onOvalTextChange4(QString)));
     QVBoxLayout *itemLayout = new QVBoxLayout();
     QHBoxLayout *row1 = new QHBoxLayout();
     row1->addWidget(ovalCenterLabel);
@@ -163,6 +171,10 @@ void t1View::createFunc3(QBoxLayout *parent, int insertPosition){
     parent->addLayout(itemLayout);
 }
 
+void t1View::onSelectChanged(int position){
+    selectedFunc = position;
+}
+
 void t1View::onTextChange1(QString arg){
     pointStart.setX(arg.toInt());
 }
@@ -176,6 +188,32 @@ void t1View::onTextChange4(QString arg){
     pointEnd.setY(arg.toInt());
 }
 
+void t1View::onCirclTextChanged1(QString arg){
+    circleCenterPoint.setX(arg.toInt());
+}
+void t1View::onCirclTextChanged2(QString arg){
+    circleCenterPoint.setY(arg.toInt());
+}
+void t1View::onCirclTextChanged3(QString arg){
+    circleRadius = arg.toInt();
+}
+
+void t1View::onOvalTextChange1(QString arg){
+    ovalCenter.setX(arg.toInt());
+}
+
+void t1View::onOvalTextChange2(QString arg){
+    ovalCenter.setY(arg.toInt());
+}
+
+void t1View::onOvalTextChange3(QString arg){
+    ovalLongRadius = arg.toInt();
+}
+
+void t1View::onOvalTextChange4(QString arg){
+    ovalShortRadius = arg.toInt();
+}
+
 void t1View::onBtnClick(){
     QPoint *erea;
     int pointsCount;
@@ -184,6 +222,16 @@ void t1View::onBtnClick(){
         std::cout<<pointStart.x()<<","<<pointStart.y()<<"  "<<pointEnd.x()<<","<<pointEnd.y()<<std::endl;
         pointsCount = drawLine(pointStart, pointEnd,erea);
         drawItem->setDrawErea(erea,pointsCount);
+        break;
+    case 1:
+        pointsCount = drawCircle(circleCenterPoint, circleRadius, erea);
+        drawItem->setDrawErea(erea,pointsCount);
+        break;
+    case 2:
+        pointsCount = drawOval(ovalCenter, ovalLongRadius, ovalShortRadius, erea);
+        drawItem->setDrawErea(erea,pointsCount);
+        break;
+    case 3:
         break;
     default:
         break;

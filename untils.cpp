@@ -37,3 +37,13 @@ int drawLine(QPoint start, QPoint end, QPoint* &result){
     return pointsCount;
 }
 
+int drawCircle(QPoint center, int radius, QPoint* &result){
+    //todo 绘制圆
+    return 0;
+}
+
+int drawOval(QPoint center, int longRadius, int shortRadius, QPoint *&result){
+    //todo 绘制椭圆
+    return 0;
+}
+
