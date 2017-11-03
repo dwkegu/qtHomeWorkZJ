@@ -90,13 +90,12 @@ private:
     /**
      * @brief createFunc1 生成功能1的参数输入UI
      * @param parent 父布局
-     * @param insertPosition 当前UI插入位置
      */
-    void createFunc1(QBoxLayout *parent, int insertPosition);
+    void createFunc1(QBoxLayout *parent);
 
-    void createFunc2(QBoxLayout *parent, int insertPosition);
+    void createFunc2(QBoxLayout *parent);
 
-    void createFunc3(QBoxLayout *parent, int insertPosition);
+    void createFunc3(QBoxLayout *parent);
 
 };
 

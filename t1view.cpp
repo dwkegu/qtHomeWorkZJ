@@ -20,9 +20,9 @@ t1View::t1View(QWidget *parent):
     leftcontainer->setSizePolicy(leftPolicy);
     //垂直布局
     leftLayout = new QVBoxLayout();
-    createFunc1(leftLayout,1);
-    createFunc2(leftLayout,2);
-    createFunc3(leftLayout,3);
+    createFunc1(leftLayout);
+    createFunc2(leftLayout);
+    createFunc3(leftLayout);
     confirmBtn = new QPushButton("绘图");
     connect(confirmBtn, SIGNAL(clicked(bool)),SLOT(onBtnClick()));
     leftLayout->addWidget(confirmBtn);
@@ -41,11 +41,11 @@ t1View::t1View(QWidget *parent):
 }
 
 t1View::~t1View(){
-
+    //todo 释放内存
 }
 
 
-void t1View::createFunc1(QBoxLayout *parent, int insertPosition){
+void t1View::createFunc1(QBoxLayout *parent){
     std::cout<<"createFunc1"<< std::endl;
     QVBoxLayout *itemLayout1 = new QVBoxLayout;
     itemLayout1->setContentsMargins(0,0,0,0);
@@ -108,7 +108,7 @@ void t1View::createFunc1(QBoxLayout *parent, int insertPosition){
     parent->addLayout(itemLayout1);
 }
 
-void t1View::createFunc2(QBoxLayout *parent, int insertPosition){
+void t1View::createFunc2(QBoxLayout *parent){
     circleCenterLabel = new QLabel("圆心坐标(x,y):");
     circleRadiusLabel = new QLabel("圆半径:");
     circleCenterXEdit = new QLineEdit();
@@ -136,7 +136,7 @@ void t1View::createFunc2(QBoxLayout *parent, int insertPosition){
     parent->addLayout(itemLayout);
 }
 
-void t1View::createFunc3(QBoxLayout *parent, int insertPosition){
+void t1View::createFunc3(QBoxLayout *parent){
     ovalCenterLabel = new QLabel("椭圆心坐标(x,y):");
     ovalLongerRadiusLabel = new QLabel("长半轴:");
     ovalShorterRadiusLabel = new QLabel("短半轴:");
