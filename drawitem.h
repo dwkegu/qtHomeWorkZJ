@@ -12,6 +12,7 @@ public:
     QPainterPath shape() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget) override;
     void setLineParameter(QPoint start, QPoint end);
+    void setDrawErea(QPoint *erea, int pointsCount);
 
 //protected:
 //    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
@@ -20,6 +21,8 @@ public:
 private:
     int func;
     QPoint linePoint[2];
+    QPoint* drawErea;
+    int pointsCount;
 };
 
 

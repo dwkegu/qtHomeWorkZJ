@@ -1,5 +1,6 @@
 #include "t1view.h"
 #include "constant.h"
+#include "untils.h"
 #include <iostream>
 
 t1View::t1View(QWidget *parent):
@@ -176,13 +177,15 @@ void t1View::onTextChange4(QString arg){
 }
 
 void t1View::onBtnClick(){
+    QPoint *erea;
+    int pointsCount;
     switch (selectedFunc) {
     case 0:
-    drawItem->setLineParameter(pointStart,pointEnd);
+        std::cout<<pointStart.x()<<","<<pointStart.y()<<"  "<<pointEnd.x()<<","<<pointEnd.y()<<std::endl;
+        pointsCount = drawLine(pointStart, pointEnd,erea);
+        drawItem->setDrawErea(erea,pointsCount);
         break;
     default:
         break;
     }
-
-    drawItem->update();
 }

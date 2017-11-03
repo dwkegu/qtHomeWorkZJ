@@ -1,9 +1,11 @@
 #include "drawitem.h"
-
+#include <iostream>
 
 DrawItem::DrawItem()
 {
     func=0;
+    drawErea = NULL;
+    pointsCount = 0;
 }
 QRectF DrawItem::boundingRect() const{
 
@@ -30,11 +32,28 @@ void DrawItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QW
         break;
     }
     */
-
+    if(NULL!=drawErea){
+        painter->drawPoints(drawErea, pointsCount);
+    }
 
 }
 
 void DrawItem::setLineParameter(QPoint start, QPoint end){
     linePoint[0] = start;
     linePoint[1] = end;
+
+}
+
+void DrawItem::setDrawErea(QPoint *erea, int pointsCount){
+    for(int i = 0; i < pointsCount; i++){
+        std::cout<<erea[i].x()<< ","<< erea[i].y()<<std::endl;
+    }
+    if(this->drawErea){
+        delete[] drawErea;
+        this->pointsCount = 0;
+        drawErea = NULL;
+    }
+    this->drawErea = erea;
+    this->pointsCount = pointsCount;
+    update();
 }
