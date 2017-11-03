@@ -62,7 +62,7 @@ void t1View::createFunc1(QBoxLayout *parent, int insertPosition){
     //设置当前选择的内容
     funcSelector->setCurrentIndex(selectedFunc);
     delete list;
-    connect(funcSelector,SIGNAL(currentIndexChanged(int)),this,SLOT(ON))
+    connect(funcSelector,SIGNAL(currentIndexChanged(int)),this,SLOT(onSelectChanged(int)));
     itemLayout1->addWidget(funcSelector);
     //整个view的容器1
     startXLabel = new QLabel(tr("起点x坐标:"));
